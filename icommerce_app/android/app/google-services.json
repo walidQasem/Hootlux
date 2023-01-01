@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "39854500001",
+    "project_id": "ecommerce-fccea",
+    "storage_bucket": "ecommerce-fccea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39854500001:android:41448ba1b635b5bf1c68e0",
+        "android_client_info": {
+          "package_name": "com.example.icommerce_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39854500001-t3udalsab8bpr0qb5rov05volqefc2jh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.icommerce_app",
+            "certificate_hash": "cd1ab3a69cca63784aff4022b672f33d9879b7a9"
+          }
+        },
+        {
+          "client_id": "39854500001-n84jpocajk723bc17lhme1v1ou348clc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVBZVcfOxtVPA39lg4AFQ5k6bKIDpupW4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39854500001-n84jpocajk723bc17lhme1v1ou348clc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
