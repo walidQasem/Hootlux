@@ -1,7 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class TextTitle extends StatelessWidget {
   final String text;
@@ -9,12 +7,16 @@ class TextTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: AutoSizeText(
-         maxLines: 1,
-            textAlign:TextAlign.center,
+        maxLines: 1,
         text,
-        style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold ,fontFamily:"cairo",),
+        style: const TextStyle(
+          fontSize: 40,
+          fontWeight: FontWeight.bold,
+          fontFamily: "cairo",
+        ),
       ),
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:widget/class/staturequest.dart';
 
-import '../../../class/hotel/Favorite_Data.dart';
+import '../../../class/hotel/GaneratData.dart';
 import '../../../function/chnageStatuReq.dart';
 import '../../../main.dart';
 

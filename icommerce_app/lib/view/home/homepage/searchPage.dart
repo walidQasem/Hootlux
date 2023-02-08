@@ -57,15 +57,19 @@ class SearchPage extends StatelessWidget {
                               width: 70,
                               height: 5,
                               decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 152, 152, 152),
+                                  color:
+                                      const Color.fromARGB(255, 152, 152, 152),
                                   borderRadius: BorderRadius.circular(20)),
                             ),
                           ),
                           hieght(15),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child:
-                                text("Graph numerical reasoning", Color.fromARGB(255, 169, 169, 169), 13, FontWeight.bold),
+                            child: text(
+                                "Graph numerical reasoning",
+                                const Color.fromARGB(255, 169, 169, 169),
+                                13,
+                                FontWeight.bold),
                           ),
                           hieght(5),
                           Padding(
@@ -94,13 +98,13 @@ class SearchPage extends StatelessWidget {
                               () {
                             controller.filterSearch();
                             Get.back();
-                          }, null, const Icon(Icons.filter)),
+                          }, null, const Icon(Icons.filter), null),
                           hieght(10),
                           ButtonFun(
                               "  restore", Colors.grey, double.infinity, 50,
                               () {
                             controller.restoreFilter();
-                          }, null, const Icon(Icons.restore)),
+                          }, null, const Icon(Icons.restore), null),
                         ],
                       ),
                     );

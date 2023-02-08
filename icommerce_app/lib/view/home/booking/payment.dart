@@ -52,11 +52,10 @@ class Payment extends StatelessWidget {
                 size: 41,
               ),
             ),
-             hieght(40),
-            ButtonFun("Next", colorbutton, 200, 50, () {
+            hieght(40),
+            ButtonFun("Next", colorbutton, 200, 60, () {
               con.toPageCard();
-            }, null,
-                const Icon(Icons.arrow_circle_right_outlined)),
+            }, null, const Icon(Icons.arrow_circle_right_outlined), null),
             // Text("${con.ntroGroup}")
           ]);
         }),

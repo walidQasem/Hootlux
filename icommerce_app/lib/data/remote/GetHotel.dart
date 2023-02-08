@@ -8,7 +8,6 @@ class GetHotel {
   getdata() async {
     var response =
         await crude.getdata(getHotel, {"user": shardp!.getString("id")});
-
     return response.fold((left) => left, (right) => right);
   }
 
@@ -21,16 +20,15 @@ class GetHotel {
     var response = await crude.getdata(getSituation, {"id_Hotel": id});
     return response.fold((left) => left, (right) => right);
   }
-  getCommantaire(String id)async {
+
+  getCommantaire(String id) async {
     var response = await crude.getdata(getCommentaire, {"id_Hotel": id});
     return response.fold((left) => left, (right) => right);
   }
-    addCommantaire(String id,String desc)async {
-    var response = await crude.getdata(addCommantairee, {
-      "id_user":shardp!.getString("id"),
-      "id_Hotel": id,
-      "desc":desc
-    });
+
+  addCommantaire(String id, String desc) async {
+    var response = await crude.getdata(addCommantairee,
+        {"id_user": shardp!.getString("id"), "id_Hotel": id, "desc": desc});
     return response.fold((left) => left, (right) => right);
   }
 }

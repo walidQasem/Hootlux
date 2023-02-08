@@ -13,6 +13,7 @@ class SingUpController extends GetxController {
   late TextEditingController email;
   late TextEditingController password;
   late TextEditingController phone;
+  late TextEditingController role;
 
   late Icon icon = const Icon(Icons.remove_red_eye);
   GlobalKey<FormState> formSingup = GlobalKey<FormState>();
@@ -25,20 +26,19 @@ class SingUpController extends GetxController {
     var pimage = await pickedfile.getImage(source: ImageSource.camera);
     if (pimage != null) {
       image = File(pimage.path);
-    } else {
-      
-    }
+    } else {}
     update();
   }
 
   singupform() async {
     isloading = true;
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     var response = await postdata(addUser, {
       "username_user": username.text,
       "email_user": email.text,
       "phone_user": phone.text,
-      "password": password.text
+      "password": password.text,
+      "role": role.text
     });
     if (response['message'] == false) {
       isloading = false;
@@ -85,6 +85,7 @@ class SingUpController extends GetxController {
     email = TextEditingController();
     password = TextEditingController();
     phone = TextEditingController();
+    role = TextEditingController();
 
     super.onInit();
   }

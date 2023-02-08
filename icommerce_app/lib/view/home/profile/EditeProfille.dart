@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:widget/constant/color.dart';
+import 'package:widget/constant/url.dart';
 import 'package:widget/controller/home/profil/EditprofileController.dart';
 import 'package:widget/main.dart';
-import 'package:widget/widget/auth/buttomAuth.dart';
 
 import '../../../function/validInput.dart';
 import '../../../shared/appBar.dart';
 import '../../../shared/hieght.dart';
 import '../../../shared/textFild.dart';
-import '../../../widget/home/profile/inkwil.dart';
 
 class EditeProfile extends GetView<EditProfilController> {
   const EditeProfile({super.key});
@@ -19,7 +16,7 @@ class EditeProfile extends GetView<EditProfilController> {
   @override
   Widget build(BuildContext context) {
     EditProfilController controllere = Get.put(EditProfilController());
-      double w = MediaQuery.of(context).size.width;
+    double w = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: appbarfunction("Edit Profile"),
         body: SingleChildScrollView(
@@ -38,13 +35,22 @@ class EditeProfile extends GetView<EditProfilController> {
                           borderRadius: BorderRadius.circular(100),
                           color: const Color.fromARGB(255, 233, 233, 233),
                         ),
-                        child: ClipRRect(
-                             borderRadius: BorderRadius.circular(30),
-                          child: Image.network(
-                            "https://images.unsplash.com/photo-1593359863503-f598684c806f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                        child: GetBuilder<EditProfilController>(builder: (cee) {
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: cee.image == null
+                                ? shardp!.getString("imageUser") != ""
+                                    ? Image.network(
+                                        "$root/ecommerce/image/${shardp!.getString("imageUser").toString()}",
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.network(
+                                        "https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?w=740&t=st=1673440012~exp=1673440612~hmac=b9679852a205a0d2dc6a01ec23f0ed92786fd3f89cd1d2a74d547c2dbaf96153",
+                                        fit: BoxFit.cover,
+                                      )
+                                : Image.file(cee.image!, fit: BoxFit.cover),
+                          );
+                        }),
                       ),
                       Positioned(
                         bottom: 0,
@@ -56,7 +62,9 @@ class EditeProfile extends GetView<EditProfilController> {
                             child: TextButton(
                                 style: TextButton.styleFrom(
                                     backgroundColor: colorbutton),
-                                onPressed: () {},
+                                onPressed: () {
+                                  controller.uploadImage();
+                                },
                                 child: const Icon(
                                   Icons.edit,
                                   color: Colors.white,
@@ -67,20 +75,20 @@ class EditeProfile extends GetView<EditProfilController> {
                     ],
                   ),
                 ),
-                        hieght(50),
-                                Edittext(
+                hieght(50),
+                Edittext(
                     validator: (val) {
                       return valideInbut(val!, 5, 18, "username");
                     },
                     labele: "",
                     obescure: false,
-                 enabel: false,
+                    enabel: false,
                     hint: 'Enter your username',
-                    icon:const Icon(Icons.edit_outlined),
-                   
-                    prifixicon: Icon(Icons.person,color:colorbutton,size:20),
+                    icon: const Icon(Icons.edit_outlined),
+                    prifixicon:
+                        Icon(Icons.person, color: colorbutton, size: 20),
                     controller: controllere.username),
-                      hieght(20),
+                hieght(20),
                 Edittext(
                     validator: (val) {
                       return valideInbut(val!, 5, 18, "email");
@@ -89,51 +97,53 @@ class EditeProfile extends GetView<EditProfilController> {
                     labele: "",
                     obescure: false,
                     hint: 'Enter your Email',
-                  
-             
-                    prifixicon:  Icon(Icons.email,color:colorbutton,size:20,),
+                    prifixicon: Icon(
+                      Icons.email,
+                      color: colorbutton,
+                      size: 20,
+                    ),
                     controller: controllere.email),
-                  
-           hieght(20),
-
-             Edittext(
+                hieght(20),
+                Edittext(
                     validator: (val) {
                       return valideInbut(val!, 5, 18, "phone");
                     },
                     labele: "",
                     obescure: false,
-                enabel: false,
+                    enabel: false,
                     hint: 'Enter your phone',
-                    type:"phone",
+                    type: "phone",
                     icon: const Icon(Icons.edit_outlined),
-                   
-                    prifixicon: Icon(Icons.phone,color:colorbutton,size:20,),
+                    prifixicon: Icon(
+                      Icons.phone,
+                      color: colorbutton,
+                      size: 20,
+                    ),
                     controller: controllere.phone),
-        
-        
-        
-                      hieght(30),
-        
-        
-
-
-                Container(
-              
-                  height:55,
-                  width:w ,
+                hieght(30),
+                SizedBox(
+                  height: 55,
+                  width: w,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(11),
                     child: ElevatedButton.icon(
-                      style:TextButton.styleFrom(backgroundColor: colorbutton),
+                      style: TextButton.styleFrom(backgroundColor: colorbutton),
                       onPressed: () {
                         controller.save();
-                        },
-                        icon: const Icon(
-                         Icons.save_as_outlined,
-                         size: 24.0,
-                         ),
-                    label: const Text('Save',style:TextStyle(fontWeight: FontWeight.bold,fontSize:16,fontFamily: "cairo"),), // <-- Text
-                                  ),
+                        controller.upload();
+                      },
+                      icon: const Icon(
+                        Icons.save_as_outlined,
+                        size: 24.0,
+                      ),
+                      label: const Text(
+                        'Save',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            fontFamily: "cairo"),
+                      ), // <-- Text
+                    ),
                   ),
                 ),
               ]),

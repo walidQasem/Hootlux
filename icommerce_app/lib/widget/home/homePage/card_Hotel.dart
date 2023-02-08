@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:widget/constant/url.dart';
 import 'package:widget/controller/home/hotel/FavoriteController.dart';
 import 'package:widget/shared/isBlack.dart';
 
@@ -15,6 +18,7 @@ class CadrHotel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List imge = jsonDecode(data_Hotel.imgHotel.toString());
     double w = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
@@ -24,13 +28,16 @@ class CadrHotel extends StatelessWidget {
               "description": data_Hotel.descriptionHotel,
               "rating": data_Hotel.rating,
               "img": data_Hotel.imgHotel.toString(),
-              "price":data_Hotel.price.toString(),
+              "price": data_Hotel.price.toString(),
+              "longitude": data_Hotel.longitude,
+              "latitude": data_Hotel.latitude,
+              "situations": data_Hotel.situations,
             },
             transition: Transition.fadeIn,
             duration: const Duration(milliseconds: 500));
       },
       child: Container(
-        width: 200,
+        width: 290,
         height: 300,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), color: Colors.black),
@@ -41,8 +48,8 @@ class CadrHotel extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  data_Hotel.imgHotel.toString(),
-                  width: 600,
+                  "$root/ecommerce/image/${imge[0].toString()}",
+                  width: double.infinity,
                   height: 500,
                   fit: BoxFit.cover,
                 )),

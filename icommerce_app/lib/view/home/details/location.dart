@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart' as latLng;
 import 'package:widget/constant/color.dart';
+import 'package:widget/controller/home/hotel/detailsController.dart';
 
 class Location extends StatelessWidget {
   const Location({super.key});
-
   @override
   Widget build(BuildContext context) {
+    DetailsController dd = Get.put(DetailsController());
     return Column(
       children: [
         Container(
@@ -19,7 +21,7 @@ class Location extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: FlutterMap(
               options: MapOptions(
-                center: latLng.LatLng(32.3101, -9.2366),
+                center: latLng.LatLng(dd.latitude, dd.longitude),
                 zoom: 14.2,
               ),
               layers: [
@@ -29,11 +31,12 @@ class Location extends StatelessWidget {
                     subdomains: ["a", "b", "c"]),
                 MarkerLayerOptions(markers: [
                   Marker(
-                      point: latLng.LatLng(32.3101, -9.2366),
+                      point: latLng.LatLng(dd.latitude, dd.longitude),
                       builder: (xx) => Icon(
-                            Icons.location_on,
+                            Icons.location_on_outlined,
+                            
                             color: colorbutton,
-                            size: 40,
+                            size: 50,
                           ))
                 ])
               ],

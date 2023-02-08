@@ -5,7 +5,6 @@ import 'package:widget/constant/color.dart';
 import 'package:widget/shared/button.dart';
 import 'package:widget/shared/isBlack.dart';
 
-import '../../../class/staturequest.dart';
 import '../../../controller/home/hotel/detailsController.dart';
 import '../../../function/Situations.dart';
 import '../../../shared/hieght.dart';
@@ -61,39 +60,37 @@ class Overview extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               GetBuilder<DetailsController>(builder: (cont) {
-                if (cont.statusRequest == StatusRequest.success) {
-                  return Center(
-                    child: Wrap(
-                      direction: Axis.horizontal,
-                      children: [
-                        ...List.generate(
-                            cont.situation.length,
-                            (i) => SizedBox(
-                                  width: 100,
-                                  height: 50,
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        situations(
-                                            cont.situation[i]["situations"]),
+                return Center(
+                  child: Wrap(
+                    runSpacing: 5.0,
+                    spacing: 10.0,
+                    
+                    direction: Axis.horizontal,
+                    children: [
+                      ...List.generate(
+                          cont.situations.length,
+                          (i) => SizedBox(
+                                width: 100,
+                                height: 50,
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      situations(cont.situations[i].toString()),
+                                      color: colorbutton,
+                                    ),
+                                    wid(5),
+                                    Text(
+                                      cont.situations[i].toString(),
+                                      style: TextStyle(
                                         color: colorbutton,
                                       ),
-                                      wid(5),
-                                      Text(
-                                        cont.situation[i]["situations"],
-                                        style: TextStyle(
-                                          color: colorbutton,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ))
-                      ],
-                    ),
-                  );
-                } else {
-                  return const Text("wa");
-                }
+                                    ),
+                                  ],
+                                ),
+                              ))
+                    ],
+                  ),
+                );
               }),
               ButtonFun(
                   "view all",
@@ -108,7 +105,8 @@ class Overview extends StatelessWidget {
                     Icons.keyboard_arrow_down,
                     color: isblack(const Color.fromARGB(255, 204, 204, 204),
                         const Color.fromARGB(255, 77, 77, 77)),
-                  )),
+                  ),
+                  null),
             ],
           ),
         ),

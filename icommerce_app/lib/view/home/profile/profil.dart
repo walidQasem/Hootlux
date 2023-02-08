@@ -1,8 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:widget/constant/color.dart';
+import 'package:widget/constant/url.dart';
 import 'package:widget/main.dart';
 import 'package:widget/shared/hieght.dart';
 import 'package:widget/view/home/profile/EditeProfille.dart';
@@ -25,22 +25,51 @@ class Profil extends StatelessWidget {
         children: [
           Column(children: [
             Center(
-              child: Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: const Color.fromARGB(255, 233, 233, 233),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: Image.network(
-                    "https://images.unsplash.com/photo-1593359863503-f598684c806f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                child: Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: const Color.fromARGB(255, 233, 233, 233),
               ),
-            ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: shardp!.getString("imageUser") != ""
+                    ? Image.network(
+                        "$root/ecommerce/image/${shardp!.getString("imageUser").toString()}",
+                        fit: BoxFit.cover,
+                        frameBuilder:
+                            (context, child, frame, wasSynchronouslyLoaded) {
+                          return child;
+                        },
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          } else {
+                            return Shimmer.fromColors(
+                              baseColor: shardp!.getString("themeColor") ==
+                                      "ThemeData#7e127"
+                                  ? const Color.fromARGB(255, 95, 95, 95)
+                                  : const Color.fromARGB(255, 226, 226, 226),
+                              highlightColor: shardp!.getString("themeColor") ==
+                                      "ThemeData#7e127"
+                                  ? const Color.fromARGB(255, 119, 119, 119)
+                                  : const Color.fromARGB(255, 203, 203, 203),
+                              child: Container(
+                                width: double.infinity,
+                                height: double.infinity,
+                                color: Colors.grey,
+                              ),
+                            );
+                          }
+                        },
+                      )
+                    : Image.network(
+                        "https://img.freepik.com/free-vector/mysterious-mafia-man-smoking-cigarette_52683-34828.jpg?w=740&t=st=1673440012~exp=1673440612~hmac=b9679852a205a0d2dc6a01ec23f0ed92786fd3f89cd1d2a74d547c2dbaf96153",
+                        fit: BoxFit.cover,
+                      ),
+              ),
+            )),
             hieght(10),
             Text(shardp!.getString("username").toString(),
                 style: const TextStyle(
@@ -50,7 +79,7 @@ class Profil extends StatelessWidget {
             hieght(40),
             SizedBox(
               height: 30,
-              width:double.infinity,
+              width: double.infinity,
               child: Stack(children: [
                 Icon(
                   Icons.nights_stay_sharp,
@@ -112,8 +141,6 @@ class Profil extends StatelessWidget {
                 "8".tr, () {}),
             hieght(35),
             inkWell(Icon(Icons.login, color: colorbutton), "10".tr, () {
-              shardp!.remove("themeColor");
-
               controP.logout();
             })
           ]),

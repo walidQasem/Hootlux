@@ -1,24 +1,19 @@
+// ignore: file_names
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:widget/class/staturequest.dart';
-import 'package:widget/constant/color.dart';
 import 'package:widget/controller/home/hotel/detailsController.dart';
 import 'package:widget/model/Hotel/Model_commentaire.dart';
 import 'package:widget/shared/button.dart';
 import 'package:widget/shared/hieght.dart';
 import 'package:widget/shared/isBlack.dart';
 
-import '../../../function/validInput.dart';
 import '../../../shared/textFild.dart';
 import '../../../widget/home/homePage/card_commentaire.dart';
 
 class Commentaire extends StatelessWidget {
-    final player = AudioPlayer();
-   Commentaire({super.key});
-
+  final player = AudioPlayer();
+  Commentaire({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +29,7 @@ class Commentaire extends StatelessWidget {
                   const Color.fromARGB(255, 223, 223, 223)),
               double.infinity,
               50, () {
-            Get.bottomSheet(
-              
-              
-              Container(
+            Get.bottomSheet(Container(
               height: 130,
               decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
@@ -48,30 +40,28 @@ class Commentaire extends StatelessWidget {
               child: Column(
                 children: [
                   hieght(10),
-                   Container(
-                              width: 70,
-                              height: 5,
-                              decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 184, 184, 184),
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
+                  Container(
+                    width: 70,
+                    height: 5,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 184, 184, 184),
+                        borderRadius: BorderRadius.circular(20)),
+                  ),
                   Padding(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 20),
                       child: Stack(
                         children: [
                           Edittext(
-                            
                             validator: (val) {
                               return null;
                             },
                             icon: IconButton(
                               icon: const Icon(Icons.send),
                               onPressed: () async {
-                                 Get.back();
+                                Get.back();
                                 await c.addCommantaire();
                                 player.play(AssetSource('comment.mp3'));
-                               
                               },
                             ),
                             ff: c.focus,
@@ -94,7 +84,8 @@ class Commentaire extends StatelessWidget {
                 Icons.add_comment_rounded,
                 color: isblack(const Color.fromARGB(255, 204, 204, 204),
                     const Color.fromARGB(255, 77, 77, 77)),
-              )),
+              ),
+              null),
         ),
         GetBuilder<DetailsController>(builder: (con) {
           return Column(

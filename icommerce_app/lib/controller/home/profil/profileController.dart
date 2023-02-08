@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:widget/constant/color.dart';
 import 'package:widget/main.dart';
 import 'package:widget/view/auth/singin.dart';
@@ -8,6 +11,8 @@ import '../../../shared/isBlack.dart';
 
 class ProfilController extends GetxController {
   late bool sWitch = false;
+
+
 
   onchangeSwitch(bool f) {
     if (f == true) {
@@ -57,8 +62,8 @@ class ProfilController extends GetxController {
             minWidth: 40,
             height: 47,
             color:
-                isblack(Colors.black, const Color.fromARGB(255, 105, 105, 105)),
-            textColor: Colors.white,
+                isblack(Colors.black, const Color.fromARGB(255, 223, 223, 255)),
+            textColor: colorbutton,
             onPressed: () {
               Get.back();
             },

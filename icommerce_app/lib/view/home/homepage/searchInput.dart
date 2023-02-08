@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:widget/constant/color.dart';
+import 'package:widget/controller/home/HomeController.dart';
 import 'package:widget/view/home/homepage/searchPage.dart';
 
-import '../../../controller/home/search/searchController.dart';
 import '../../../shared/textFild.dart';
 
 class SearchInput extends StatelessWidget {
@@ -11,8 +11,10 @@ class SearchInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeController g = Get.put(HomeController());
     return Edittext(
       onTap: () {
+    
         Get.to(const SearchPage());
       },
       validator: (val) {

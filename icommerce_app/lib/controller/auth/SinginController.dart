@@ -1,17 +1,13 @@
-import 'dart:io';
-
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:widget/constant/url.dart';
 import 'package:widget/main.dart';
 import 'package:widget/view/auth/singup.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:widget/view/dashboard/home1Dash.dart';
+import 'package:widget/view/dashboard/homeDash.dart';
 import 'package:widget/view/home/homeApp.dart';
 import '../../class/crud.dart';
-import '../../function/checkinternet.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class SinginController extends GetxController {
   late TextEditingController email;
@@ -25,7 +21,7 @@ class SinginController extends GetxController {
 
   testlogin() async {
     isloading = true;
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     var response = await postdata(
         loginuser, {"email_user": email.text, "password": password.text});
     if (response['message'] == true) {
@@ -34,10 +30,16 @@ class SinginController extends GetxController {
       shardp!.setString("username", response["data"]['username_user']);
       shardp!.setString("emailKey", response["data"]['email_user']);
       shardp!.setString("phone", response["data"]['phone_user']);
-      
-    
-  
-      Get.offAll(() => HomeApp());
+      shardp!.setString("imageUser", response["data"]['img_user']);
+      shardp!.setString("role", response["data"]['role']);
+      if (response["data"]['role'] == "admin" ||
+          response["data"]['role'] == "Recipient") {
+        Get.offAll(() => const Home1Dash());
+      }
+
+      if (response["data"]['role'] == "client") {
+        Get.offAll(() => const HomeApp());
+      }
     } else {
       isloading = false;
       Get.defaultDialog(

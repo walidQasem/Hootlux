@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:readmore/readmore.dart';
-import 'package:widget/class/staturequest.dart';
-import 'package:widget/constant/color.dart';
 import 'package:widget/controller/home/hotel/detailsController.dart';
-import 'package:widget/shared/hieght.dart';
 import 'package:widget/view/home/details/ButtonBooking.dart';
 import 'package:widget/view/home/details/Commentaire.dart';
 import 'package:widget/view/home/details/category.dart';
 import 'package:widget/view/home/details/infoHotel.dart';
 import 'package:widget/view/home/details/location.dart';
 import 'package:widget/view/home/details/overview.dart';
-import 'package:widget/view/home/homepage/gallry.dart';
-import 'package:widget/widget/auth/buttomAuth.dart';
 
-import '../../../function/Situations.dart';
-import '../../../shared/button.dart';
-import '../../../shared/isBlack.dart';
-import '../../../shared/text.dart';
 import '../details/image.dart';
 import '../details/images.dart';
 
@@ -29,7 +19,7 @@ class DetailsHotel extends StatelessWidget {
     PageController pg = PageController(viewportFraction: 0.5);
     List<Widget> listColors = [
       const Overview(),
-       Commentaire(),
+      Commentaire(),
       const Location()
     ];
 

@@ -1,19 +1,15 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:widget/constant/rooteNamed.dart';
 import 'package:widget/main.dart';
 import 'package:widget/shared/appBar.dart';
 import 'package:widget/shared/hieght.dart';
 import 'package:widget/view/auth/forgetpassword/forgetpassword.dart';
-import 'package:widget/view/auth/singup.dart';
 import 'package:widget/widget/auth/buttomAuth.dart';
 import 'package:widget/widget/auth/textbody.dart';
 import 'package:widget/widget/auth/textbottm.dart';
 import 'package:widget/shared/textFild.dart';
 
-import '../../constant/color.dart';
 import '../../controller/auth/SinginController.dart';
 import '../../function/alertExit.dart';
 import '../../function/validInput.dart';
@@ -44,19 +40,18 @@ class Singin extends GetView<SinginController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Center(
-                                child: SizedBox(
-                                  width: w / 1.6,
-                                  height: w / 2,
-                                  child: Container(
-                                    width: 100,
-                                    height: 100,
-                                    child: Image.asset("images/logo.png")),
+                                child: AspectRatio(
+                                  aspectRatio: w < 600 ? 13 / 9 : 5,
+                                  child: SizedBox(
+                                      width: 100,
+                                      height: 100,
+                                      child: Image.asset("images/undraw.png")),
                                 ),
                               ),
-                              const TextTitle(text: "Welcom back"),
+                              hieght(20),
+                              const TextTitle(text: "Login"),
                               const TextBody(
-                                  bodytext:
-                                      "Sing in with email and password or continue with \n social media"),
+                                  bodytext: "Pleas sign in to continue "),
                               hieght(20),
                               Edittext(
                                   validator: (val) {
@@ -156,10 +151,7 @@ class Singin extends GetView<SinginController> {
                     ],
                   ),
                 )
-              : Center(
-                  child: Lottie.network(
-                      "https://assets4.lottiefiles.com/private_files/lf30_dqbik4tt.json",
-                      width: 140));
+              : Center(child: Lottie.asset("assets/signin.json", width: 140));
         }),
       ),
     );

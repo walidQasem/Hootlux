@@ -19,5 +19,11 @@ class Approot {
   static String seachpage = "/seachpage";
   static String bookingDate = "/Bookingdate";
   static String payment = "/paymnet";
-  static String cardPayment ="/CardPayment";
+  static String cardPayment = "/CardPayment";
+  static String confermationPayment = "/PaymentConfomation";
+  static String ticket = "/ticket";
+  static String homeDashboard = "/HomeDash";
+  static String ajouterHotel = "/UploadHotel";
+  static String addhotel = "/AddHotel";
+  static String home1Dash = "/homeDash";
 }

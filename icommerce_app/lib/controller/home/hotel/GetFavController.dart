@@ -4,7 +4,7 @@ import 'package:widget/class/staturequest.dart';
 import 'package:widget/function/chnageStatuReq.dart';
 import 'package:widget/main.dart';
 
-import '../../../class/hotel/Favorite_Data.dart';
+import '../../../class/hotel/GaneratData.dart';
 import '../../../data/remote/addFavorite.dart';
 
 class AfichageFavoriteControllere extends GetxController {

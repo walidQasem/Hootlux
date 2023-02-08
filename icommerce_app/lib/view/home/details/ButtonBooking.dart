@@ -7,7 +7,6 @@ import 'package:widget/shared/isArabic.dart';
 
 import '../../../shared/isBlack.dart';
 import '../../../shared/text.dart';
-import '../booking/booking_date.dart';
 
 class BokingButoon extends StatelessWidget {
   const BokingButoon({super.key});
@@ -22,13 +21,8 @@ class BokingButoon extends StatelessWidget {
           Row(
             children: [
               ButtonFun("Book new", colorbutton, 200, 50, () {
-                Get.to(() => const Bookingdate(),
-                      arguments: {
-                      "idHotel": d.id.toString(),
-                       "price": d.price.toString()
-                      
-                      });
-              }, null, const Icon(Icons.monetization_on_outlined)),
+                d.is_booking();
+              }, null, const Icon(Icons.monetization_on_outlined), null),
             ],
           ),
           Positioned(

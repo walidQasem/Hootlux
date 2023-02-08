@@ -7,7 +7,7 @@ import 'package:widget/shared/appBar.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:widget/shared/hieght.dart';
 import 'package:widget/shared/isBlack.dart';
-import 'package:widget/view/home/booking/payment.dart';
+import 'package:widget/widget/home/booking/inkwelGeast.dart';
 
 import '../../../shared/button.dart';
 import '../../../shared/text.dart';
@@ -41,12 +41,25 @@ class Bookingdate extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             child: ListView(children: [
               SfDateRangePicker(
+                rangeSelectionColor: isblack(
+                    const Color.fromARGB(255, 58, 89, 137),
+                    const Color.fromARGB(255, 197, 217, 255)),
+                minDate: DateTime.now(),
+                endRangeSelectionColor: const Color.fromARGB(255, 87, 152, 255),
+                enableMultiView: false,
+                allowViewNavigation: true,
+                initialDisplayDate: DateTime.now(),
+                initialSelectedDate: DateTime.now(),
+                initialSelectedRange: PickerDateRange(
+                    DateTime.now(),
+                    DateTime(DateTime.now().year, DateTime.now().month,
+                        DateTime.now().day + 1)),
                 selectionTextStyle: const TextStyle(
                     fontFamily: "cairo", fontWeight: FontWeight.bold),
                 rangeTextStyle: TextStyle(
                     fontFamily: "cario",
                     fontWeight: FontWeight.bold,
-                    color: isblack(const Color.fromARGB(255, 224, 224, 224),
+                    color: isblack(const Color.fromARGB(255, 255, 255, 255),
                         const Color.fromARGB(255, 79, 79, 79))),
                 onSelectionChanged: (x) {
                   bk.onchangedate(x.value);
@@ -68,153 +81,90 @@ class Bookingdate extends StatelessWidget {
                         const Color.fromARGB(255, 203, 203, 203))),
                 enablePastDates: true,
               ),
-              SizedBox(
-                height: 190,
-                child: Stack(
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 20),
+              //   child: text("Guest", const Color.fromARGB(255, 68, 68, 68), 20,
+              //       FontWeight.bold),
+              // ),
+              Container(
+                decoration: BoxDecoration(
+                    color: isblack(
+                        const Color.fromARGB(255, 43, 43, 43), Colors.white),
+                    borderRadius: BorderRadius.circular(20)),
+                width: 100,
+                height: 100,
+                child: Row(
                   children: [
-                    const Text(""),
-                    Positioned(
-                        right: 60,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            text(
-                                "from day",
-                                isblack(
-                                    const Color.fromARGB(255, 224, 224, 224),
-                                    const Color.fromARGB(255, 79, 79, 79)),
-                                16,
-                                FontWeight.bold),
-                            text(
-                                "${cont.stratDate!.month.toString()}/${cont.stratDate!.day.toString()}",
-                                isblack(
-                                    const Color.fromARGB(255, 224, 224, 224),
-                                    const Color.fromARGB(255, 79, 79, 79)),
-                                15,
-                                FontWeight.w100)
-                          ],
-                        )),
-                    Positioned(
-                        left: 20,
-                        child: Column(
-                          children: [
-                            text(
-                                "to day",
-                                isblack(
-                                    const Color.fromARGB(255, 224, 224, 224),
-                                    const Color.fromARGB(255, 79, 79, 79)),
-                                16,
-                                FontWeight.bold),
-                            text(
-                                "${cont.endDate!.month.toString()}/${cont.endDate!.day.toString()}",
-                                isblack(
-                                    const Color.fromARGB(255, 224, 224, 224),
-                                    const Color.fromARGB(255, 79, 79, 79)),
-                                15,
-                                FontWeight.w100)
-                          ],
-                        )),
-                    Positioned(
-                        left: 20,
-                        top: 80,
-                        child: Column(
-                          // crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            text(
-                                "Number a children",
-                                isblack(
-                                    const Color.fromARGB(255, 224, 224, 224),
-                                    const Color.fromARGB(255, 79, 79, 79)),
-                                15,
-                                FontWeight.bold),
-                            SizedBox(
-                              width: 100,
-                              child: DropdownButton<int>(
-                                underline: Container(),
-                                menuMaxHeight: 120,
-                                borderRadius: BorderRadius.circular(7),
-                                icon: Container(
-                                    child: const Icon(
-                                        Icons.arrow_drop_down_rounded)),
-                                value: cont.indexEfant,
-                                style: TextStyle(
-                                    color: isblack(
-                                        const Color.fromARGB(
-                                            255, 224, 224, 224),
-                                        const Color.fromARGB(255, 79, 79, 79)),
-                                    fontFamily: "cairo"),
-                                items: enfant
-                                    .map((e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text(
-                                          e.toString(),
-                                          style: TextStyle(
-                                              color: isblack(
-                                                  const Color.fromARGB(
-                                                      255, 224, 224, 224),
-                                                  const Color.fromARGB(
-                                                      255, 79, 79, 79))),
-                                        )))
-                                    .toList(),
-                                onChanged: (x) {
-                                  cont.changeDropDownEnfant(x!);
-                                  cont.calculerSome();
-                                },
-                              ),
-                            ),
-                          ],
-                        )),
-                    Positioned(
-                        right: 20,
-                        top: 80,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            text(
-                                "Number a dulte",
-                                isblack(
-                                    const Color.fromARGB(255, 224, 224, 224),
-                                    const Color.fromARGB(255, 79, 79, 79)),
-                                15,
-                                FontWeight.bold),
-                            SizedBox(
-                              width: 100,
-                              child: DropdownButton<int>(
-                                underline: Container(),
-                                borderRadius: BorderRadius.circular(7),
-                                menuMaxHeight: 120,
-                                icon: const Icon(Icons.arrow_drop_down_rounded),
-                                value: cont.indexdult,
-                                style: TextStyle(
-                                    color: isblack(
-                                        const Color.fromARGB(
-                                            255, 224, 224, 224),
-                                        const Color.fromARGB(255, 79, 79, 79)),
-                                    fontFamily: "cairo"),
-                                items: dulte
-                                    .map((e) => DropdownMenuItem(
-                                        value: e,
-                                        child: Text(
-                                          e.toString(),
-                                          style: TextStyle(
-                                              color: isblack(
-                                                  const Color.fromARGB(
-                                                      255, 224, 224, 224),
-                                                  const Color.fromARGB(
-                                                      255, 79, 79, 79))),
-                                        )))
-                                    .toList(),
-                                onChanged: (x) {
-                                  cont.changeDropDowndelt(x!);
-                                  cont.calculerSome();
-                                },
-                              ),
-                            ),
-                          ],
-                        )),
+                    Expanded(
+                      child: ListTile(
+                        title: text(
+                            "Adults",
+                            isblack(const Color.fromARGB(255, 228, 228, 228),
+                                const Color.fromARGB(255, 50, 50, 50)),
+                            16,
+                            FontWeight.bold),
+                        subtitle: text(
+                            "Over 17 years",
+                            const Color.fromARGB(255, 168, 168, 168),
+                            12,
+                            FontWeight.bold),
+                      ),
+                    ),
+                    GetBuilder<BookingController>(builder: (contex) {
+                      return InkwemGeast(
+                        onTap1: () {
+                          contex.decrimentAdult();
+                        },
+                        onTap2: () {
+                          contex.incrimentAdult();
+                        },
+                        text: contex.indexdult.toString(),
+                      );
+                    }),
                   ],
                 ),
               ),
+              hieght(10),
+
+              Container(
+                decoration: BoxDecoration(
+                    color: isblack(
+                        const Color.fromARGB(255, 43, 43, 43), Colors.white),
+                    borderRadius: BorderRadius.circular(20)),
+                width: 100,
+                height: 100,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ListTile(
+                        title: text(
+                            "Child",
+                            isblack(const Color.fromARGB(255, 228, 228, 228),
+                                const Color.fromARGB(255, 50, 50, 50)),
+                            16,
+                            FontWeight.bold),
+                        subtitle: text(
+                            "Over 17 years",
+                            const Color.fromARGB(255, 168, 168, 168),
+                            12,
+                            FontWeight.bold),
+                      ),
+                    ),
+                    GetBuilder<BookingController>(builder: (contex) {
+                      return InkwemGeast(
+                        onTap1: () {
+                          contex.decrimenttEfant();
+                        },
+                        onTap2: () {
+                          contex.incrimentEfant();
+                        },
+                        text: contex.indexEfant.toString(),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+              hieght(10),
               SizedBox(
                   height: 40,
                   child: Padding(
@@ -239,10 +189,10 @@ class Bookingdate extends StatelessWidget {
                       ],
                     ),
                   )),
-                  hieght(20),
-              ButtonFun("Follow up", colorbutton, 200, 50, () {
-                Get.to(() => const Payment());
-              }, null, const Icon(Icons.arrow_circle_right_outlined)),
+              hieght(20),
+              ButtonFun("Follow up", colorbutton, 200, 60, () {
+                bk.isvalidechn();
+              }, null, const Icon(Icons.arrow_circle_right_outlined), null),
             ]));
       }),
     );

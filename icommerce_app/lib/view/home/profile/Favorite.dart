@@ -19,7 +19,7 @@ class Favorite extends StatelessWidget {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: appbarfunction("Favorite"),
-        body: Column(
+        body: ListView(
           children: [
             GetBuilder<AfichageFavoriteControllere>(builder: (con) {
               if (con.statusRequist == StatusRequest.loading) {
@@ -40,22 +40,31 @@ class Favorite extends StatelessWidget {
                 if (con.statusRequist == StatusRequest.success) {
                   if (con.fave.isEmpty) {
                     return SizedBox(
-                      width:w,
-                      height: h/1.3,
+                      width: w,
+                      height: h / 1.3,
                       child: Center(
-                       child: Column(
+                          child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                         Lottie.network(
-                            "https://assets7.lottiefiles.com/packages/lf20_ydo1amjm.json",width:300),
-                            const Text("Empty",style: TextStyle(fontSize:25,fontWeight: FontWeight.bold,fontFamily: "cairo"),),
-                             const Text("you dont have any favorite",style: TextStyle(fontFamily: "cairo"),)
-                       ],)
-                      ),
+                          Lottie.asset("assets/favorite.json", width: 300),
+                          const Text(
+                            "Empty",
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "cairo"),
+                          ),
+                          const Text(
+                            "you dont have any favorite",
+                            style: TextStyle(fontFamily: "cairo"),
+                          )
+                        ],
+                      )),
                     );
                   } else {
-                    return Expanded(
+                    return SizedBox(
+                      height: MediaQuery.of(context).size.height,
                       child: ListView.builder(
                         itemCount: con.fave.length,
                         itemBuilder: (contex, i) {

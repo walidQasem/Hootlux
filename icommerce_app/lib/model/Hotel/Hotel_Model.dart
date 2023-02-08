@@ -1,5 +1,3 @@
-
-
 class Data_Class_Hotel {
   int? idHotel;
   String? nomHotel;
@@ -16,6 +14,9 @@ class Data_Class_Hotel {
   int? favorite;
   int? price;
   double? rating;
+  double? latitude;
+  double? longitude;
+  String? situations;
 
   Data_Class_Hotel(
       {this.idHotel,
@@ -30,7 +31,10 @@ class Data_Class_Hotel {
       this.imgHotel4,
       this.favorite,
       this.price,
-      this.rating});
+      this.rating,
+      this.latitude,
+      this.longitude,
+      this.situations});
 
   Data_Class_Hotel.fromJson(Map<String, dynamic> json) {
     idHotel = json['id_Hotel'];
@@ -46,6 +50,9 @@ class Data_Class_Hotel {
     favorite = json['favorite'];
     price = json['price'];
     rating = json['rating'];
+    latitude = json['latitude'];
+    longitude = json['longitude'];
+    situations = json['situations'];
   }
 
   Map<String, dynamic> toJson() {

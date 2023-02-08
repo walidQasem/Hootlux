@@ -1,13 +1,16 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:widget/constant/rooteNamed.dart';
 import 'package:widget/view/auth/forgetpassword/forgetpassword.dart';
 import 'package:widget/view/auth/forgetpassword/verifierCodeForgetPassword.dart';
 import 'package:widget/view/auth/succescodeSingup.dart';
 import 'package:widget/view/auth/verifycodeSingup.dart';
+import 'package:widget/view/dashboard/home1Dash.dart';
+import 'package:widget/view/dashboard/homeDash.dart';
+import 'package:widget/view/home/booking/Payment%20confirmation.dart';
+import 'package:widget/view/home/booking/Ticket.dart';
+import 'package:widget/view/home/booking/addHotel.dart';
 import 'package:widget/view/home/booking/card.dart';
 import 'package:widget/view/home/booking/payment.dart';
-import 'package:widget/view/home/details/testMap.dart';
 import 'package:widget/view/home/homeApp.dart';
 import 'package:widget/view/home/homepage/details.dart';
 import 'package:widget/view/home/homepage/gallry.dart';
@@ -22,6 +25,7 @@ import 'package:widget/view/auth/singin.dart';
 import 'package:widget/view/auth/singup.dart';
 import 'package:widget/view/auth/forgetpassword/ResetPassword.dart';
 import 'package:widget/view/auth/forgetpassword/succes.dart';
+import 'package:widget/widget/dashboard/uploadHotel.dart';
 
 import 'middleware/mymiddleware.dart';
 import 'view/home/booking/booking_date.dart';
@@ -50,6 +54,14 @@ List<GetPage<dynamic>>? rootee = [
   GetPage(name: Approot.seachpage, page: () => const SearchPage()),
   GetPage(name: Approot.bookingDate, page: () => const Bookingdate()),
   GetPage(name: Approot.payment, page: () => const Payment()),
-    GetPage(name: Approot.cardPayment, page: () => const CardPayment())
+  GetPage(name: Approot.cardPayment, page: () => const CardPayment()),
+  GetPage(
+      name: Approot.confermationPayment,
+      page: () => const PaymentConfomation()),
+  GetPage(name: Approot.ticket, page: () => const Ticket()),
+  GetPage(name: Approot.homeDashboard, page: () => const HomeDash()),
+  GetPage(name: Approot.ajouterHotel, page: () => const UploadHotel()),
+  GetPage(name: Approot.addhotel, page: ()=>AddHotel()),
+  GetPage(name: Approot.home1Dash, page:()=>Home1Dash())
   // GetPage(name: "/test", page: () => const TestMap())
 ];

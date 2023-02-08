@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:widget/constant/color.dart';
+import 'package:widget/constant/url.dart';
 import 'package:widget/controller/home/hotel/FavoriteController.dart';
 import 'package:widget/shared/hieght.dart';
 import 'package:widget/shared/text.dart';
 
-import '../../../controller/home/hotel/GetFavController.dart';
 import '../../../model/Hotel/Hotel_Model.dart';
 import '../../../shared/isBlack.dart';
 import '../../../view/home/homepage/details.dart';
@@ -18,7 +20,7 @@ class CardSearchHotel extends GetView<FavoriteController> {
   });
   @override
   Widget build(BuildContext context) {
-
+    List imge = jsonDecode(dataHotel.imgHotel.toString());
     return InkWell(
       onTap: () {
         Get.to(() => const DetailsHotel(),
@@ -27,7 +29,10 @@ class CardSearchHotel extends GetView<FavoriteController> {
               "description": dataHotel.descriptionHotel,
               "rating": dataHotel.rating,
               "img": dataHotel.imgHotel.toString(),
-               "price":dataHotel.price.toString(),
+              "price": dataHotel.price.toString(),
+              "longitude": dataHotel.longitude,
+              "latitude": dataHotel.latitude,
+              "situations": dataHotel.situations,
             },
             transition: Transition.fadeIn,
             duration: const Duration(milliseconds: 500));
@@ -49,7 +54,7 @@ class CardSearchHotel extends GetView<FavoriteController> {
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(
-                        dataHotel.imgHotel.toString(),
+                        "$root/ecommerce/image/${imge[0].toString()}",
                         width: 120,
                         fit: BoxFit.cover,
                       )),

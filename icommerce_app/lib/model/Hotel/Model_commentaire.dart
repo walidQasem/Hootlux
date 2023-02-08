@@ -5,15 +5,16 @@ class Commentaire_Model {
   int? udUser;
   String? dateCommentaire;
   String? usernameUser;
+  String? img;
 
   Commentaire_Model(
- 
       {this.idCommentaire,
       this.textCommentaire,
       this.idHotel,
       this.udUser,
       this.dateCommentaire,
-      this.usernameUser});
+      this.usernameUser,
+      this.img});
 
   Commentaire_Model.fromJson(Map<String, dynamic> json) {
     idCommentaire = json['id_commentaire'];
@@ -22,16 +23,17 @@ class Commentaire_Model {
     udUser = json['ud_User'];
     dateCommentaire = json['date_commentaire'];
     usernameUser = json['username_user'];
+    img = json['img_user'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id_commentaire'] = this.idCommentaire;
-    data['text_commentaire'] = this.textCommentaire;
-    data['id_Hotel'] = this.idHotel;
-    data['ud_User'] = this.udUser;
-    data['date_commentaire'] = this.dateCommentaire;
-    data['username_user'] = this.usernameUser;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id_commentaire'] = idCommentaire;
+    data['text_commentaire'] = textCommentaire;
+    data['id_Hotel'] = idHotel;
+    data['ud_User'] = udUser;
+    data['date_commentaire'] = dateCommentaire;
+    data['username_user'] = usernameUser;
     return data;
   }
 }

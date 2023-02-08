@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:widget/constant/url.dart';
 import 'package:widget/controller/home/hotel/detailsController.dart';
 
 class ImageP extends StatelessWidget {
@@ -20,9 +21,9 @@ class ImageP extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  de.img.toString(),
+        "$root/ecommerce/image/${de.images[0].toString()}",
                   fit: BoxFit.cover,
-                  width: 900,
+                  width: double.infinity,
                   height: 900,
                 )),
           ),

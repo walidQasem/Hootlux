@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:widget/constant/color.dart';
+import 'package:widget/constant/url.dart';
 import 'package:widget/controller/home/hotel/FavoriteController.dart';
+import 'package:widget/main.dart';
 import 'package:widget/shared/hieght.dart';
 
 import '../../../controller/home/hotel/GetFavController.dart';
@@ -17,6 +22,7 @@ class CardFavorite extends GetView<FavoriteController> {
   });
   @override
   Widget build(BuildContext context) {
+    List imge = jsonDecode(dataHotel.imgHotel.toString());
     AfichageFavoriteControllere cc = Get.put(AfichageFavoriteControllere());
     return InkWell(
       onTap: () {
@@ -27,6 +33,9 @@ class CardFavorite extends GetView<FavoriteController> {
               "rating": dataHotel.rating,
               "img": dataHotel.imgHotel.toString(),
               "price": dataHotel.price.toString(),
+              "longitude": dataHotel.longitude,
+              "latitude": dataHotel.latitude,
+              "situations": dataHotel.situations,
             },
             transition: Transition.fadeIn,
             duration: const Duration(milliseconds: 500));
@@ -44,9 +53,34 @@ class CardFavorite extends GetView<FavoriteController> {
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Image.network(
-                        dataHotel.imgHotel.toString(),
+                        "$root/ecommerce/image/${imge[1].toString()}",
                         width: 120,
                         fit: BoxFit.cover,
+                        frameBuilder:
+                            (context, child, frame, wasSynchronouslyLoaded) {
+                          return child;
+                        },
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          } else {
+                            return Shimmer.fromColors(
+                              baseColor: shardp!.getString("themeColor") ==
+                                      "ThemeData#7e127"
+                                  ? const Color.fromARGB(255, 95, 95, 95)
+                                  : const Color.fromARGB(255, 226, 226, 226),
+                              highlightColor: shardp!.getString("themeColor") ==
+                                      "ThemeData#7e127"
+                                  ? const Color.fromARGB(255, 119, 119, 119)
+                                  : const Color.fromARGB(255, 203, 203, 203),
+                              child: Container(
+                                width: double.infinity,
+                                height: double.infinity,
+                                color: Colors.grey,
+                              ),
+                            );
+                          }
+                        },
                       )),
                 ),
                 Container(
@@ -160,30 +194,32 @@ class CardFavorite extends GetView<FavoriteController> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 15),
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                    width: 150,
+                                    width: 160,
                                     height: 50,
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(12),
                                       child: MaterialButton(
                                         color: const Color.fromARGB(
-                                            255, 139, 139, 139),
+                                            255, 216, 213, 255),
                                         onPressed: () {
                                           Get.back();
                                         },
-                                        child: const Text("Cancele",
+                                        child: Text("Cancele",
                                             style:
-                                                TextStyle(color: Colors.white)),
+                                                TextStyle(color: colorbutton)),
                                       ),
                                     ),
                                   ),
                                   wid(10),
                                   SizedBox(
-                                    width: 150,
+                                    width: 160,
                                     height: 50,
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(12),
                                       child: MaterialButton(
                                         color: colorbutton,
                                         onPressed: () {
